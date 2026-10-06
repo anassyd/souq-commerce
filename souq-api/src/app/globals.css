@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Souq palette: white + cool grey surfaces, cobalt for actions, saffron for deals */
+    --background: 0 0% 100%;
+    --foreground: 232 22% 14%;      /* #1B1E2E ink */
+    --card: 0 0% 100%;
+    --card-foreground: 232 22% 14%;
+    --primary: 229 76% 47%;         /* #1D3FD1 cobalt */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 225 22% 95%;       /* #EEF0F6 cool grey surface */
+    --secondary-foreground: 232 22% 14%;
+    --muted: 225 22% 95%;
+    --muted-foreground: 228 10% 42%;
+    --accent: 229 76% 95%;
+    --accent-foreground: 229 76% 35%;
+    --deal: 43 100% 48%;            /* #F5B301 saffron */
+    --deal-foreground: 232 22% 14%;
+    --destructive: 0 72% 46%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 226 20% 89%;
+    --input: 226 20% 86%;
+    --ring: 229 76% 47%;
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground font-sans antialiased; }
+  h1, h2, h3 { @apply font-display tracking-tight; }
+  html { scroll-behavior: smooth; }
+  ::selection { background: hsl(var(--deal) / 0.35); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 999px; border: 2px solid hsl(var(--background)); }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.5); }
+}
+
+@layer utilities {
+  /* Faint square grid used behind hero and promo sections. */
+  .bg-grid {
+    background-image: linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .mask-fade-x { mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); }
+  .mask-fade-b { mask-image: linear-gradient(to bottom, black 40%, transparent); }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .text-shine {
+    background: linear-gradient(110deg, currentColor 40%, hsl(0 0% 100%) 50%, currentColor 60%) 0 0 / 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+}
